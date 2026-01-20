@@ -1,8 +1,9 @@
+import { getEnv } from './getEnv.js';
 import type { LocationType } from './types.js';
 
 export async function fetchHourlyForecast(locations: Array<LocationType>) {
-    const openWeatherURL = process.env.OPEN_WEATHER_ENDPOINT!;
-    const openWeatherAPIKey = process.env.OPEN_WEATHER_API_KEY!;
+    const openWeatherURL = getEnv('OPEN_WEATHER_ENDPOINT');
+    const openWeatherAPIKey = getEnv('OPEN_WEATHER_API_KEY');
 
     const results = await Promise.all(
         locations.map(async (location) => {
