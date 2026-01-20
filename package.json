@@ -1,16 +1,15 @@
 {
-  "name": "weather",
+  "name": "weather-commute",
   "version": "1.0.0",
-  "description": "",
+  "description": "A weather forecast application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx ./src/index.ts",
     "build": "tsc",
     "prod": "node dist/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Hitallo Azevedo",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
