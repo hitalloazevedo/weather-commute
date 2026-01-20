@@ -17,7 +17,6 @@ jobs:
       EMAIL_SMTP_USER: ${{ secrets.EMAIL_SMTP_USER }}
       EMAIL_SMTP_PASSWORD: ${{ secrets.EMAIL_SMTP_PASSWORD }}
       NOTIFICATION_EMAIL_TO: ${{ secrets.NOTIFICATION_EMAIL_TO }}
-      LOCATIONS: ${{ env.LOCATIONS }}
       TZ: America/Sao_Paulo
 
     steps:
