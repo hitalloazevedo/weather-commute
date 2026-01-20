@@ -1,2 +1,0 @@
-- extract temperature, if lower than 23 -> take a coat
-- extract weather forecast
