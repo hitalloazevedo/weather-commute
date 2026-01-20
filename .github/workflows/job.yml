@@ -8,15 +8,8 @@ on:
 jobs:
   run-app:
     runs-on: ubuntu-latest
-    env:
-      OPEN_WEATHER_API_KEY: ${{ secrets.OPEN_WEATHER_API_KEY }}
-      OPEN_WEATHER_ENDPOINT: ${{ secrets.OPEN_WEATHER_ENDPOINT }}
-      EMAIL_SMTP_HOST: ${{ secrets.EMAIL_SMTP_HOST }}
-      EMAIL_SMTP_PORT: ${{ secrets.EMAIL_SMTP_PORT }}
-      EMAIL_SMTP_USER: ${{ secrets.EMAIL_SMTP_USER }}
-      EMAIL_SMTP_PASSWORD: ${{ secrets.EMAIL_SMTP_PASSWORD }}
-      NOTIFICATION_EMAIL_TO: ${{ secrets.NOTIFICATION_EMAIL_TO }}
-
+    environment: forecast-app-env
+    
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -28,6 +21,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci && npm run build
-        
+
       - name: Run weather forecast application
         run: npm run prod
