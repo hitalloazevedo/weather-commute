@@ -1,12 +1,17 @@
 import dotenv from 'dotenv'
-import { EmailService } from './email/emailService.js';
+import { EmailService } from './emailService.js';
 import { fetchHourlyForecast } from './fetchHourlyForecast.js';
 import { locations } from './locations.js';
 import { formatResult } from './formatResult.js';
+import { logInfo } from './logger.js';
 
 dotenv.config();
 
+logInfo('Starting weather forecast fetch process...');
+
 const data = await fetchHourlyForecast(locations);
+
+logInfo('Weather data fetched successfully.');
 
 const result = formatResult(data);
 
