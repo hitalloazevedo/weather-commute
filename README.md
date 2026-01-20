@@ -34,6 +34,7 @@ It contains the hourly forecast for the next 7 hours — the exact window of tim
 City #1
 06 PM | 21.19°C | overcast clouds.
 07 PM | 21.05°C | overcast clouds.
+
 08 AM | 20.93°C | overcast clouds.
 09 AM | 20.25°C | overcast clouds.
 10 AM | 19.61°C | overcast clouds.
@@ -60,3 +61,44 @@ City #3
 11 AM | 18.16°C | broken clouds.
 12 AM | 18.12°C | overcast clouds.
 ```
+
+---
+
+## **How To Run**
+
+- **Prerequisites:** Node.js 20, npm.
+- **Install & build:**
+
+```bash
+npm ci
+npm run build
+```
+
+- **Environment variables:** set the following (example `.env` line):
+
+```env
+OPEN_WEATHER_API_KEY=your_api_key_here
+OPEN_WEATHER_ENDPOINT=https://api.openweathermap.org
+EMAIL_SMTP_HOST="smtp.server.com"
+EMAIL_SMTP_PORT=587
+EMAIL_SMTP_USER="user@domain.com"
+EMAIL_SMTP_PASSWORD="aaaaaaaaaaaaaaaaa"
+NOTIFICATION_EMAIL_TO="receiver@domain.com"
+LOCATIONS='[{"name":"City1","latitude":"-0.2234234","longitude":"-4.880223"},{"name":"City2","latitude":"-2.2221111","longitude":"-7.999888"},{"name":"City3","latitude":"-11.3232323","longitude":"-0.222333"}]'
+```
+
+- **Run locally (production build):**
+
+```bash
+node dist/index.js
+```
+
+- **Run in development:**
+
+```bash
+npm run dev
+```
+
+- **Running in GitHub Actions:** add the same variables as repository secrets: `OPEN_WEATHER_API_KEY`, `OPEN_WEATHER_ENDPOINT`, `EMAIL_SMTP_HOST`, `EMAIL_SMTP_PORT`, `EMAIL_SMTP_USER`, `EMAIL_SMTP_PASSWORD`, `NOTIFICATION_EMAIL_TO` and `LOCATIONS`. The workflow will read them and fail early if any are missing.
+
+---
