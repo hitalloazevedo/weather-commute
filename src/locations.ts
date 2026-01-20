@@ -1,4 +1,6 @@
-export const locations = [
+import type { LocationType } from "./types.js";
+
+export const locations: Array<LocationType> = [
     {
         name: 'city1',
         latitude: '0',
@@ -14,4 +16,4 @@ export const locations = [
         latitude: '-0',
         longitude: '0'
     }
-]
+];

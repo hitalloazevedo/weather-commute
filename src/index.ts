@@ -1,28 +1,14 @@
 import dotenv from 'dotenv'
-import { EmailService } from './email/email.service.js';
+import { EmailService } from './email/emailService.js';
 import { fetchHourlyForecast } from './fetchHourlyForecast.js';
 import { locations } from './locations.js';
+import { formatResult } from './formatResult.js';
 
 dotenv.config();
 
 const data = await fetchHourlyForecast(locations);
 
-let result = '';
-
-for (let location of data){
-    result += `${location.city.name}\n`;
-
-    for (let forecast of location.list){
-        const date = new Date(forecast.dt * 1000);
-        let time = date.toLocaleTimeString().padStart(11, '0');;
-        const period = time.split(' ')[1];
-        time = time.slice(0, 2);
-        result += `${time} ${period} | ${forecast.main.temp.toFixed(2)}°C | ${forecast.weather[0].description}.\n`;
-    }
-    result += '\n\n';
-}
-
-console.log(result);
+const result = formatResult(data);
 
 const emailService = EmailService.getInstance();
 

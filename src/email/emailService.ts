@@ -17,7 +17,7 @@ export class EmailService {
         return EmailService.instance;
     }
 
-    async sendEmail({ to, subject, body }: { to: string; subject: string; body: string; }) {
+    async sendEmail({ to, subject, body }: { to: string; subject: string; body: string; }): Promise<void> {
         console.log('Sending email to:', to);
         const info = await this.transporter.sendMail({
             from: `"Weather Service" <${transporterOptions.auth.user}>`,
