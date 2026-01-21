@@ -2,7 +2,7 @@ name: Weather Forecast Job
 
 on:
   schedule:
-    - cron: '0 20 * * 1-5'
+    - cron: '30 19 * * 1-5'
   workflow_dispatch:
 
 jobs:
