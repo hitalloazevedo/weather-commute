@@ -1,9 +1,8 @@
-import { EmailService } from './emailService.js';
 import { fetchHourlyForecast } from './fetchHourlyForecast.js';
 import { locations } from './locations.js';
 import { formatResult } from './formatResult.js';
 import { logInfo } from './logger.js';
-import { getEnv } from './getEnv.js';
+import { DiscordService } from './Discord.js';
 
 logInfo('Starting weather forecast fetch process...');
 
@@ -13,10 +12,6 @@ logInfo('Weather data fetched successfully.');
 
 const result = formatResult(data);
 
-const emailService = EmailService.getInstance();
+const discord = DiscordService.getInstance();
 
-await emailService.sendEmail({
-    to: getEnv('NOTIFICATION_EMAIL_TO'),
-    subject: 'Hourly Weather Forecast',
-    body: result,
-});
+await discord.sendMessage(result);

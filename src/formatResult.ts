@@ -8,8 +8,13 @@ export function formatResult(data: Array<ForecastType>): string {
 
         for (let forecast of location.list) {
             const date = new Date(forecast.dt * 1000);
-            let time = date.toLocaleTimeString().padStart(11, '0');;
-            const period = time.split(' ')[1];
+            let time = date.toLocaleTimeString("pt-BR", {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false,
+                timeZone: "America/Sao_Paulo"
+            });
+            const period = '';
             time = time.slice(0, 2);
 
             if (forecast.weather.length > 0){
