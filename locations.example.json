@@ -1,0 +1,19 @@
+{
+    "locations": [
+        {
+            "name": "City 1",
+            "latitude": "-0.2234234",
+            "longitude": "-4.880223"
+        },
+        {
+            "name": "City 2",
+            "latitude": "-2.2221111",
+            "longitude": "-7.999888"
+        },
+        {
+            "name": "City 3",
+            "latitude": "-11.3232323",
+            "longitude": "-0.222333"
+        }
+    ]
+}
