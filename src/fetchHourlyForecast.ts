@@ -12,7 +12,7 @@ const WEATHER_CODES: Record<number, string> = {
 
 export async function fetchHourlyForecast(locations: Array<LocationType>): Promise<Array<ForecastType>> {
   return Promise.all(locations.map(async location => {
-    const url = `${config.openMeteoEndpoint}/forecast?latitude=${location.latitude}&longitude=${location.longitude}&hourly=temperature_2m,weather_code&forecast_days=1`;
+    const url = `${config.openMeteoEndpoint}/forecast?latitude=${location.latitude}&longitude=${location.longitude}&hourly=temperature_2m,weather_code&forecast_days=1&timezone=America%2FSao_Paulo`;
     const response = await fetch(url);
     const data = await response.json() as OpenMeteoResponse;
     const now = new Date();
