@@ -4,4 +4,5 @@ export const config = {
   publicKey: process.env.PUBLIC_KEY,
   channelId: process.env.CHANNEL_ID,
   openMeteoEndpoint: process.env.OPEN_METEO_ENDPOINT ?? "https://api.open-meteo.com/v1",
+  openMeteoTimezone: process.env.OPEN_METEO_TIMEZONE ?? "America/Sao_Paulo",
 };
