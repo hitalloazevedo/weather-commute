@@ -11,8 +11,10 @@ const WEATHER_CODES: Record<number, string> = {
 };
 
 export async function fetchHourlyForecast(locations: Array<LocationType>): Promise<Array<ForecastType>> {
+  const requestedAt = Math.floor(Date.now() / 1000);
+
   return Promise.all(locations.map(async location => {
-    const url = `${config.openMeteoEndpoint}/forecast?latitude=${location.latitude}&longitude=${location.longitude}&hourly=temperature_2m,weather_code&forecast_hours=7&timezone=${encodeURIComponent(config.openMeteoTimezone)}`;
+    const url = `${config.openMeteoEndpoint}/forecast?latitude=${location.latitude}&longitude=${location.longitude}&hourly=temperature_2m,weather_code&forecast_hours=9&timezone=UTC`;
     const response = await fetch(url);
     const data = await response.json() as OpenMeteoResponse;
 
@@ -25,7 +27,7 @@ export async function fetchHourlyForecast(locations: Array<LocationType>): Promi
       }
 
       return {
-        dt: Math.floor(new Date(time).getTime() / 1000),
+        dt: Math.floor(new Date(`${time}Z`).getTime() / 1000),
         main: {
           temp: temperature,
           feels_like: 0,
@@ -51,6 +53,7 @@ export async function fetchHourlyForecast(locations: Array<LocationType>): Promi
         dt_txt: time,
       };
     });
-    return { cod: "200", message: 0, cnt: list.length, list, city: { id: 0, name: location.name, coord: { lat: Number(location.latitude), lon: Number(location.longitude) } } };
+    const commuteList = list.filter(forecast => forecast.dt > requestedAt).slice(0, 8);
+    return { cod: "200", message: 0, cnt: commuteList.length, list: commuteList, city: { id: 0, name: location.name, coord: { lat: Number(location.latitude), lon: Number(location.longitude) } } };
   }));
 }

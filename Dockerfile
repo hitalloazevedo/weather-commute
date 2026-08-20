@@ -18,6 +18,9 @@ FROM node:22-alpine
 WORKDIR /app
 
 ENV NODE_ENV=production
+ENV TZ=America/Sao_Paulo
+
+RUN apk add --no-cache tzdata
 
 COPY package*.json ./
 
